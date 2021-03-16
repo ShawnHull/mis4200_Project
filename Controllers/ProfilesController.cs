@@ -6,18 +6,19 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using mis4200_Project.DAL;
 using mis4200_Project.Models;
 
 namespace mis4200_Project.Controllers
 {
     public class ProfilesController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private CContext db = new CContext();
 
         // GET: Profiles
         public ActionResult Index()
         {
-            return View(db.Profiles.ToList());
+            return View(db.profile.ToList());
         }
 
         // GET: Profiles/Details/5
@@ -27,7 +28,7 @@ namespace mis4200_Project.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Profile profile = db.Profiles.Find(id);
+            Profile profile = db.profile.Find(id);
             if (profile == null)
             {
                 return HttpNotFound();
@@ -50,7 +51,7 @@ namespace mis4200_Project.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Profiles.Add(profile);
+                db.profile.Add(profile);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +66,7 @@ namespace mis4200_Project.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Profile profile = db.Profiles.Find(id);
+            Profile profile = db.profile.Find(id);
             if (profile == null)
             {
                 return HttpNotFound();
@@ -96,7 +97,7 @@ namespace mis4200_Project.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Profile profile = db.Profiles.Find(id);
+            Profile profile = db.profile.Find(id);
             if (profile == null)
             {
                 return HttpNotFound();
@@ -109,8 +110,8 @@ namespace mis4200_Project.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Profile profile = db.Profiles.Find(id);
-            db.Profiles.Remove(profile);
+            Profile profile = db.profile.Find(id);
+            db.profile.Remove(profile);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
