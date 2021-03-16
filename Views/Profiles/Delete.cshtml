@@ -1,0 +1,80 @@
+﻿@model mis4200_Project.Models.Profile
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Profile</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.employeeFirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.employeeFirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.employeeLastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.employeeLastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.employeeSince)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.employeeSince)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Department)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Department)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.socialMediaLinks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.socialMediaLinks)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,74 @@
+﻿@model mis4200_Project.Models.Profile
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Profile</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.employeeFirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.employeeFirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.employeeLastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.employeeLastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.employeeSince)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.employeeSince)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Department)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Department)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.socialMediaLinks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.socialMediaLinks)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.profileID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

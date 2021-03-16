@@ -29,5 +29,7 @@ namespace mis4200_Project.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<mis4200_Project.Models.Profile> Profiles { get; set; }
     }
 }

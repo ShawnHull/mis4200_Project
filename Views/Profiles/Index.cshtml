@@ -1,0 +1,69 @@
+﻿@model IEnumerable<mis4200_Project.Models.Profile>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.employeeFirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.employeeLastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.employeeSince)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Department)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.socialMediaLinks)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.employeeFirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.employeeLastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.employeeSince)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Department)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.socialMediaLinks)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.profileID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.profileID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.profileID })
+        </td>
+    </tr>
+}
+
+</table>
