@@ -13,6 +13,8 @@ namespace mis4200_Project.Models
         public string email { get; set; }
         public string phone { get; set; }
         public DateTime employeeSince { get; set; }
+        public string Department { get; set; }
+        public string socialMediaLinks { get; set; }
         public string employeeFullName
         {
             get
