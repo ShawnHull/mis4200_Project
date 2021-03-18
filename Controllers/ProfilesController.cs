@@ -37,6 +37,7 @@ namespace mis4200_Project.Controllers
         }
 
         // GET: Profiles/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
