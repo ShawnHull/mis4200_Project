@@ -14,5 +14,8 @@ namespace mis4200_Project.DAL
 
         }
         public DbSet<Profile> profile { get; set; }
+
+        public DbSet<MyProfile> Myprofile { get; set; }
+
     }
 }

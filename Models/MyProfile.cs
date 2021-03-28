@@ -7,5 +7,6 @@ namespace mis4200_Project.Models
 {
     public class MyProfile
     {
+        public int MyprofileID { get; set; }
     }
 }
