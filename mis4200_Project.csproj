@@ -173,6 +173,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MyProfile.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\Recognition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
