@@ -35,12 +35,8 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.employeeFirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.employeeLastName)
-        </td>
-        <td>
+            @Html.DisplayNameFor(model => model.employeeFullName)
+               <td>
             @Html.DisplayFor(modelItem => item.email)
         </td>
         <td>
