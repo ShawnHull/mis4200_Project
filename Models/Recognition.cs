@@ -26,7 +26,7 @@ namespace mis4200_Project.Models
 
         [Display(Name = "Employee Name")]
         [Required(ErrorMessage = "Add Employee")]
-        public int profileID { get; set; }
+        public Guid profileID { get; set; }
         public virtual Profile Profile { get; set; }
 
 

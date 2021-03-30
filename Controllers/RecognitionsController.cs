@@ -60,7 +60,7 @@ namespace mis4200_Project.Controllers
             }
 
             ViewBag.CoreValueTypeID = new SelectList(db.CoreValueType, "CoreValueTypeID", "CoreValueName", recognition.CoreValueTypeID);
-            ViewBag.profileID = new SelectList(db.profile, "profileID", "employeeFulltName", recognition.profileID);
+            ViewBag.profileID = new SelectList(db.profile, "profileID", "employeeFullName", recognition.profileID);
             return View(recognition);
         }
 

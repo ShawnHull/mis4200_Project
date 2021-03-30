@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using mis4200_Project.Models;
 
 namespace mis4200_Project.Controllers
@@ -50,7 +51,10 @@ namespace mis4200_Project.Controllers
         {
             if (ModelState.IsValid)
             {
-                profile.profileID = Guid.NewGuid();
+                Guid memberId;
+                Guid.TryParse(User.Identity.GetUserId(), out memberId);
+                profile.profileID = memberId;
+                //profile.profileID = Guid.NewGuid();
                 db.Profiles.Add(profile);
                 db.SaveChanges();
                 return RedirectToAction("Index");

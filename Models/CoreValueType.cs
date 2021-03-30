@@ -13,6 +13,6 @@ namespace mis4200_Project.Models
         [Display(Name = "Core Value Name")]
         public string CoreValueName { get; set; }
 
-        public ICollection<Recognition> recognition { get; set; }
+        public ICollection<Recognition> Recognition { get; set; }
     }
 }

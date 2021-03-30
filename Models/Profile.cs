@@ -33,6 +33,6 @@ namespace mis4200_Project.Models
             }
 
         }
-        public ICollection<Recognition> recognition { get; set; }
+        public ICollection<Recognition> Recognition { get; set; }
     }
 }
