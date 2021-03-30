@@ -10,26 +10,25 @@ namespace mis4200_Project.Models
     {
         public int RecognitionID { get; set; }
 
-        [Display(Name = "First Name")]
-        public string employeeFirstName { get; set; }
-        [Display(Name = "Last Name")]
-        public string employeeLastName { get; set; }
-        [Display(Name = "Email")]
-        public string email { get; set; }
-        [Display(Name = "Phone")]
-        public string phone { get; set; }
-        [Display(Name = "Date of Recognition")]
-        public DateTime recognitionDate { get; set; }
-        [Display(Name = "Centric Unit")]
-        public string Unit { get; set; }
-        [Display(Name = "Full Name")]
-        public string employeeFullName
-        {
-            get
-            {
-                return employeeLastName + ", " + employeeFirstName;
-            }
-        }
+        [Display(Name = "Core Value")]
+        [Required(ErrorMessage = "Add Core Value")]
+        public int CoreValueTypeID { get; set; }
+        public virtual CoreValueType CoreValueType { get; set; }
 
-       }
+        [Display(Name = "Recognition Description")]
+        [Required(ErrorMessage = "Please explain why you are making this recognition")]
+        public string recognitionDescription { get; set; }
+
+        [Display(Name = "Recognition Date")]
+        [DisplayFormat(DataFormatString = "{0:d}")]
+        [Required(ErrorMessage = "Please input a date")]
+        public string recognitionDate { get; set; }
+
+        [Display(Name = "Employee Name")]
+        [Required(ErrorMessage = "Add Employee")]
+        public int profileID { get; set; }
+        public virtual Profile Profile { get; set; }
+
+
+    }
     }
