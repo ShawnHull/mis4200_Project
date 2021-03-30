@@ -1,18 +1,21 @@
 ﻿@model IEnumerable<mis4200_Project.Models.Profile>
 
 @{
-    ViewBag.Title = "Profile";
+    ViewBag.Title = "Index";
 }
 
-<h2>Employee Profiles</h2>
+<h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New Profile", "Create")
+    @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table table-striped table">
+<table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.employeeFullName)
+            @Html.DisplayNameFor(model => model.employeeFirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.employeeLastName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.email)
@@ -35,8 +38,12 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayNameFor(model => model.employeeFullName)
-               <td>
+            @Html.DisplayFor(modelItem => item.employeeFirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.employeeLastName)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.email)
         </td>
         <td>

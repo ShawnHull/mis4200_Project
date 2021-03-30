@@ -8,7 +8,7 @@ namespace mis4200_Project.Models
 {
     public class Profile
     {
-        public int profileID { get; set; }
+        public Guid profileID { get; set; }
         
         [Display(Name = "First Name")]
         public string employeeFirstName { get; set; }

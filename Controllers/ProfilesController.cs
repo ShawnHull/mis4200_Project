@@ -6,29 +6,28 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using mis4200_Project.DAL;
 using mis4200_Project.Models;
 
 namespace mis4200_Project.Controllers
 {
     public class ProfilesController : Controller
     {
-        private CContext db = new CContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Profiles
         public ActionResult Index()
         {
-            return View(db.profile.ToList());
+            return View(db.Profiles.ToList());
         }
 
         // GET: Profiles/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(Guid? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Profile profile = db.profile.Find(id);
+            Profile profile = db.Profiles.Find(id);
             if (profile == null)
             {
                 return HttpNotFound();
@@ -37,7 +36,6 @@ namespace mis4200_Project.Controllers
         }
 
         // GET: Profiles/Create
-        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -52,7 +50,8 @@ namespace mis4200_Project.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.profile.Add(profile);
+                profile.profileID = Guid.NewGuid();
+                db.Profiles.Add(profile);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -61,13 +60,13 @@ namespace mis4200_Project.Controllers
         }
 
         // GET: Profiles/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(Guid? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Profile profile = db.profile.Find(id);
+            Profile profile = db.Profiles.Find(id);
             if (profile == null)
             {
                 return HttpNotFound();
@@ -92,13 +91,13 @@ namespace mis4200_Project.Controllers
         }
 
         // GET: Profiles/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(Guid? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Profile profile = db.profile.Find(id);
+            Profile profile = db.Profiles.Find(id);
             if (profile == null)
             {
                 return HttpNotFound();
@@ -109,10 +108,10 @@ namespace mis4200_Project.Controllers
         // POST: Profiles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(Guid id)
         {
-            Profile profile = db.profile.Find(id);
-            db.profile.Remove(profile);
+            Profile profile = db.Profiles.Find(id);
+            db.Profiles.Remove(profile);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
