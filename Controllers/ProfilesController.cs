@@ -16,7 +16,9 @@ namespace mis4200_Project.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Profiles
+        [Authorize]
         public ActionResult Index()
+
         {
             return View(db.Profiles.ToList());
         }
@@ -37,6 +39,7 @@ namespace mis4200_Project.Controllers
         }
 
         // GET: Profiles/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();

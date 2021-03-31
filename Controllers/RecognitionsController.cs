@@ -16,6 +16,7 @@ namespace mis4200_Project.Controllers
         private CContext db = new CContext();
 
         // GET: Recognitions
+        [Authorize]
         public ActionResult Index()
         {
             var recognition = db.recognition.Include(r => r.CoreValueType).Include(r => r.Profile);
@@ -38,6 +39,7 @@ namespace mis4200_Project.Controllers
         }
 
         // GET: Recognitions/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.CoreValueTypeID = new SelectList(db.CoreValueType, "CoreValueTypeID", "CoreValueName");
