@@ -22,7 +22,7 @@ namespace mis4200_Project.Models
         [Display(Name = "Recognition Date")]
         [DisplayFormat(DataFormatString = "{0:d}")]
         [Required(ErrorMessage = "Please input a date")]
-        public string recognitionDate { get; set; }
+        public DateTime recognitionDate { get; set; }
 
         [Display(Name = "Employee Name")]
         [Required(ErrorMessage = "Add Employee")]
