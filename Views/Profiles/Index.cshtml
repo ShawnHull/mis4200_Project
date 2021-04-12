@@ -59,9 +59,9 @@
             @Html.DisplayFor(modelItem => item.socialMediaLinks)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.profileID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.profileID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.profileID })
+            <!--Html.ActionLink("Edit", "Edit", new { id=item.profileID }) -->
+            @Html.ActionLink("Details", "Details", new { id=item.profileID })
+           <!-- Html.ActionLink("Delete", "Delete", new { id=item.profileID }) -->
         </td>
     </tr>
 }
