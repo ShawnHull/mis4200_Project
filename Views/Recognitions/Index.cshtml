@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<mis4200_Project.Models.Recognition>
 
+@using Microsoft.AspNet.Identity
 @{
     ViewBag.Title = "Index";
 }
@@ -29,12 +30,16 @@
 </head>
 <body>
 
-   
+
     <div class="we">
         <div class="row">
             <div class="col-sm-3 well">
                 <div class="well">
-                    <p><a href="#">My Profile</a></p>
+                    <p>
+                        <a href="#">
+                            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                        </a>
+                    </p>
                     <img src="bird.jpg" class="img-circle" height="65" width="65" alt="Avatar">
                 </div>
                 <div class="well">
@@ -43,10 +48,10 @@
                         <span class="label label-default">Safety Team</span>
                         <span class="label label-primary">Accounting</span>
                         <span class="label label-success">Business Unit 1</span>
-                       <!-- <span class="label label-info">23</span>
-                        <span class="label label-warning">Gaming</span>
-                        <span class="label label-danger">Friends</span> 
-                       -->
+                        <!-- <span class="label label-info">23</span>
+                         <span class="label label-warning">Gaming</span>
+                         <span class="label label-danger">Friends</span>
+                        -->
                     </p>
                 </div>
                 <!--Dingos ate my baby-->
@@ -58,23 +63,23 @@
                 </div>
                 -->
                 <p><a href="#">About Me</a></p>
-             
+
             </div>
             <div class="col-sm-7">
                 <!--
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="panel panel-default text-left">
-                    <div class="panel-body">
-                        <p contenteditable="true">Status: Feeling Blue</p>
-                        <button type="button" class="btn btn-default btn-sm">
-                            <span class="glyphicon glyphicon-thumbs-up"></span> Like
-                        </button>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel panel-default text-left">
+                            <div class="panel-body">
+                                <p contenteditable="true">Status: Feeling Blue</p>
+                                <button type="button" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-thumbs-up"></span> Like
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        -->
+                -->
                 @foreach (var item in Model)
                 {
                     <div class="row">
@@ -102,6 +107,6 @@
                     </div>
                 }
 </body>
-    </html>
+</html>
 
 

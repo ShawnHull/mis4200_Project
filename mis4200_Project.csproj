@@ -263,6 +263,7 @@
     <Content Include="Views\UserInfo\Details.cshtml" />
     <Content Include="Views\UserInfo\Edit.cshtml" />
     <Content Include="Views\UserInfo\Index.cshtml" />
+    <Content Include="Views\Recognitions\PersonalRecognitions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
