@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using mis4200_Project.DAL;
 using mis4200_Project.Models;
 
@@ -54,12 +55,23 @@ namespace mis4200_Project.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "RecognitionID,CoreValueTypeID,recognitionDescription,recognitionDate,profileID")] Recognition recognition)
         {
-            if (ModelState.IsValid)
+            Guid memberId;
+            Guid.TryParse(User.Identity.GetUserId(), out memberId);
+            if (memberId == recognition.profileID)
             {
-                db.recognition.Add(recognition);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return View("selfRecognition");
             }
+            else
+            {
+                if (ModelState.IsValid)
+                 {
+                    db.recognition.Add(recognition);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                 }
+            }  
+
+            
 
             ViewBag.CoreValueTypeID = new SelectList(db.CoreValueType, "CoreValueTypeID", "CoreValueName", recognition.CoreValueTypeID);
             ViewBag.profileID = new SelectList(db.profile, "profileID", "employeeFullName", recognition.profileID);
