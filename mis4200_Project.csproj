@@ -162,11 +162,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CurrentUserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProfilesController.cs" />
     <Compile Include="Controllers\RecognitionsController.cs" />
-    <Compile Include="Controllers\UserInfo.cs" />
     <Compile Include="DAL\CContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -258,12 +258,11 @@
     <Content Include="Views\Recognitions\Index.cshtml" />
     <Content Include="Views\Profiles\notAuthorized.cshtml" />
     <Content Include="Views\Recognitions\selfRecognition.cshtml" />
-    <Content Include="Views\UserInfo\Create.cshtml" />
-    <Content Include="Views\UserInfo\Delete.cshtml" />
-    <Content Include="Views\UserInfo\Details.cshtml" />
-    <Content Include="Views\UserInfo\Edit.cshtml" />
-    <Content Include="Views\UserInfo\Index.cshtml" />
-    <Content Include="Views\Recognitions\PersonalRecognitions.cshtml" />
+    <Content Include="Views\CurrentUser\Create.cshtml" />
+    <Content Include="Views\CurrentUser\Delete.cshtml" />
+    <Content Include="Views\CurrentUser\Details.cshtml" />
+    <Content Include="Views\CurrentUser\Edit.cshtml" />
+    <Content Include="Views\CurrentUser\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

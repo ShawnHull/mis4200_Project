@@ -12,21 +12,22 @@ using mis4200_Project.Models;
 
 namespace mis4200_Project.Controllers
 {
-    public class UserInfo : Controller
+    public class CurrentUserController : Controller
     {
         private CContext db = new CContext();
 
-        // GET: UserInfo
+        // GET: CurrentUser
+
+        [Authorize]
         public ActionResult Index()
         {
             Guid memberId;
             Guid.TryParse(User.Identity.GetUserId(), out memberId);
-            
-            var recognition = db.recognition.Include(r => r.CoreValueType).Include(r => r.Profile);
+            var recognition = db.recognition.Include(r => r.CoreValueType).Include(r => r.Profile).Where(r => r.profileID == memberId);
             return View(recognition.ToList());
         }
 
-        // GET: UserInfo/Details/5
+        // GET: CurrentUser/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -41,7 +42,7 @@ namespace mis4200_Project.Controllers
             return View(recognition);
         }
 
-        // GET: UserInfo/Create
+        // GET: CurrentUser/Create
         public ActionResult Create()
         {
             ViewBag.CoreValueTypeID = new SelectList(db.CoreValueType, "CoreValueTypeID", "CoreValueName");
@@ -49,7 +50,7 @@ namespace mis4200_Project.Controllers
             return View();
         }
 
-        // POST: UserInfo/Create
+        // POST: CurrentUser/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -68,7 +69,7 @@ namespace mis4200_Project.Controllers
             return View(recognition);
         }
 
-        // GET: UserInfo/Edit/5
+        // GET: CurrentUser/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -85,7 +86,7 @@ namespace mis4200_Project.Controllers
             return View(recognition);
         }
 
-        // POST: UserInfo/Edit/5
+        // POST: CurrentUser/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -103,7 +104,7 @@ namespace mis4200_Project.Controllers
             return View(recognition);
         }
 
-        // GET: UserInfo/Delete/5
+        // GET: CurrentUser/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -118,7 +119,7 @@ namespace mis4200_Project.Controllers
             return View(recognition);
         }
 
-        // POST: UserInfo/Delete/5
+        // POST: CurrentUser/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
