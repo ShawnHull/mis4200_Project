@@ -78,7 +78,18 @@ namespace mis4200_Project.Controllers
             {
                 return HttpNotFound();
             }
-            return View(profile);
+            Guid memberId;
+            Guid.TryParse(User.Identity.GetUserId(), out memberId);
+            if (memberId == id)
+            {
+                return View(profile);
+
+            }
+            else
+            {
+                return View("notAuthorized");
+            }
+            
         }
 
         // POST: Profiles/Edit/5
@@ -109,7 +120,18 @@ namespace mis4200_Project.Controllers
             {
                 return HttpNotFound();
             }
-            return View(profile);
+            Guid memberId;
+            Guid.TryParse(User.Identity.GetUserId(), out memberId);
+            if (memberId == id)
+            {
+                return View(profile);
+
+            }
+            else
+            {
+                return View("notAuthorized");
+            }
+            
         }
 
         // POST: Profiles/Delete/5
