@@ -20,7 +20,24 @@ namespace mis4200_Project.Controllers
         [Authorize]
         public ActionResult Index()
         {
+            Guid memberId;
+            Guid.TryParse(User.Identity.GetUserId(), out memberId);
             var recognition = db.recognition.Include(r => r.CoreValueType).Include(r => r.Profile);
+            var prolist = db.profile.Where(r => r.profileID == memberId);
+            ViewBag.pro = prolist.ToList();
+
+
+            var dep = prolist.Select(r => r.Department).Single();
+            ViewBag.dep = dep;
+
+            var phone = prolist.Select(r => r.phone).Single();
+            ViewBag.phone = phone;
+            var email = prolist.Select(r => r.email).Single();
+            ViewBag.email = email;
+            var last = prolist.Select(r => r.employeeLastName).Single();
+            ViewBag.last = last;
+            var first = prolist.Select(r => r.employeeFirstName).Single();
+            ViewBag.first = first;
             return View(recognition.ToList());
         }
 
