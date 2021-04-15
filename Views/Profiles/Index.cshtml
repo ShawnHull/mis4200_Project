@@ -4,11 +4,17 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@{
+    ViewBag.Title = "View Profiles";
+}
+
+<h2>View Profiles</h2>
+@using (@Html.BeginForm())
+{
+    @Html.TextBox("search")
+    <input type="submit" value="search" />
+}
 <table class="table">
     <tr>
         <th>
@@ -35,35 +41,36 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.employeeFirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.employeeLastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.phone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.employeeSince)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Department)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.socialMediaLinks)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.profileID })
-            @Html.ActionLink("Details", "Details", new { id=item.profileID })
-           @Html.ActionLink("Delete", "Delete", new { id=item.profileID }) 
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.employeeFirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.employeeLastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.employeeSince)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.socialMediaLinks)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.profileID })
+                @Html.ActionLink("Details", "Details", new { id = item.profileID })
+                @Html.ActionLink("Delete", "Delete", new { id = item.profileID })
+            </td>
+        </tr>
+    }
 
 </table>

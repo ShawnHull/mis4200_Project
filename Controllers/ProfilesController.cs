@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using mis4200_Project.Models;
 
+
 namespace mis4200_Project.Controllers
 {
     public class ProfilesController : Controller
@@ -17,12 +18,21 @@ namespace mis4200_Project.Controllers
 
         // GET: Profiles
         [Authorize]
-        public ActionResult Index()
+        public ActionResult Index(string search)
 
         {
-            return View(db.Profiles.ToList());
-        }
+            if (search == null)
+            {
+                return View(db.Profiles.ToList());
+            }
+            else
+            {
+                return View(db.Profiles.Where(x => x.employeeFirstName.Contains(search)).ToList());
 
+            }
+
+
+        }
         // GET: Profiles/Details/5
         public ActionResult Details(Guid? id)
         {
