@@ -7,6 +7,21 @@ using Microsoft.AspNet.Identity;
 
 namespace mis4200_Project.Models
 {
+    /*public class profilesViewModel
+    {
+        public IEnumerable<Profile> Profiles { get; set; }
+        public IEnumerable<Recognition> Recognitions { get; set; }
+        public int totalRecognitions { get { return
+
+
+
+
+    }
+
+
+
+    */
+
     public class Recognition
     {
         public int RecognitionID { get; set; }

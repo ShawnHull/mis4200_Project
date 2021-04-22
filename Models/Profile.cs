@@ -6,10 +6,11 @@ using System.Web;
 
 namespace mis4200_Project.Models
 {
+    
     public class Profile
     {
         public Guid profileID { get; set; }
-        
+
         [Display(Name = "First Name")]
         public string employeeFirstName { get; set; }
         [Display(Name = "Last Name")]
@@ -25,7 +26,7 @@ namespace mis4200_Project.Models
         [Display(Name = "Social Media Links")]
         public string socialMediaLinks { get; set; }
 
-        [Display(Name ="Avatar")]
+        [Display(Name = "Avatar")]
         public string avatar { get; set; }
 
         [Display(Name = "Full Name")]
