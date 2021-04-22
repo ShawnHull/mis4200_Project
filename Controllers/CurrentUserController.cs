@@ -23,17 +23,34 @@ namespace mis4200_Project.Controllers
         {
             Guid memberId;
             Guid.TryParse(User.Identity.GetUserId(), out memberId);
-            var recognition = db.recognition.Include(r => r.CoreValueType).Include(r => r.Profile).Where(r => r.profileID == memberId);
+            
+
+            var recognition = db.recognition.Where(r => r.profileID == memberId);
             var reclist = recognition.ToList();
+            
+            
             ViewBag.rec = reclist;
             var totalCnt = reclist.Count();
             ViewBag.total = totalCnt;
-            //var rec1Cnt = reclist.Where(r => r.CoreValueType == CoreValueType).Count();
+            var rec1Cnt = reclist.Where(r => r.value == Recognition.CoreValue.Excellence ).Count();
+            ViewBag.one = rec1Cnt;
+            var rec2Cnt = reclist.Where(r => r.value == Recognition.CoreValue.Openness).Count();
+            ViewBag.two = rec2Cnt;
+            var rec3Cnt = reclist.Where(r => r.value == Recognition.CoreValue.Stewardship).Count();
+            ViewBag.three = rec3Cnt;
+            var rec4Cnt = reclist.Where(r => r.value == Recognition.CoreValue.Culture).Count();
+            ViewBag.four = rec4Cnt;
+            var rec5Cnt = reclist.Where(r => r.value == Recognition.CoreValue.Passion).Count();
+            ViewBag.five = rec5Cnt;
+            var rec6Cnt = reclist.Where(r => r.value == Recognition.CoreValue.Innovate).Count();
+            ViewBag.six = rec6Cnt;
+            var rec7Cnt = reclist.Where(r => r.value == Recognition.CoreValue.Balanced).Count();
+            ViewBag.seven = rec7Cnt;
 
             var prolist = db.profile.Where(r => r.profileID == memberId);
             ViewBag.pro = prolist.ToList();
              
-
+           
             var dep = prolist.Select(r => r.Department).Single();
             ViewBag.dep = dep;
            
@@ -45,7 +62,7 @@ namespace mis4200_Project.Controllers
             ViewBag.last = last;
             var first = prolist.Select(r => r.employeeFirstName).Single();
             ViewBag.first = first;
-
+            
 
 
 
@@ -72,7 +89,7 @@ namespace mis4200_Project.Controllers
         // GET: CurrentUser/Create
         public ActionResult Create()
         {
-            ViewBag.CoreValueTypeID = new SelectList(db.CoreValueType, "CoreValueTypeID", "CoreValueName");
+            //ViewBag.CoreValueTypeID = new SelectList(db.CoreValueType, "CoreValueTypeID", "CoreValueName");
             ViewBag.profileID = new SelectList(db.profile, "profileID", "employeeFirstName");
             return View();
         }
@@ -91,7 +108,7 @@ namespace mis4200_Project.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CoreValueTypeID = new SelectList(db.CoreValueType, "CoreValueTypeID", "CoreValueName", recognition.CoreValueTypeID);
+            //ViewBag.CoreValueTypeID = new SelectList(db.CoreValueType, "CoreValueTypeID", "CoreValueName", recognition.value);
             ViewBag.profileID = new SelectList(db.profile, "profileID", "employeeFirstName", recognition.profileID);
             return View(recognition);
         }
@@ -108,7 +125,7 @@ namespace mis4200_Project.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CoreValueTypeID = new SelectList(db.CoreValueType, "CoreValueTypeID", "CoreValueName", recognition.CoreValueTypeID);
+            //ViewBag.CoreValueTypeID = new SelectList(db.CoreValueType, "CoreValueTypeID", "CoreValueName", recognition.value);
             ViewBag.profileID = new SelectList(db.profile, "profileID", "employeeFirstName", recognition.profileID);
             return View(recognition);
         }
@@ -126,7 +143,7 @@ namespace mis4200_Project.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CoreValueTypeID = new SelectList(db.CoreValueType, "CoreValueTypeID", "CoreValueName", recognition.CoreValueTypeID);
+            //ViewBag.CoreValueTypeID = new SelectList(db.CoreValueType, "CoreValueTypeID", "CoreValueName", recognition.value);
             ViewBag.profileID = new SelectList(db.profile, "profileID", "employeeFirstName", recognition.profileID);
             return View(recognition);
         }

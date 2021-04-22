@@ -24,6 +24,10 @@ namespace mis4200_Project.Models
         public string Department { get; set; }
         [Display(Name = "Social Media Links")]
         public string socialMediaLinks { get; set; }
+
+        [Display(Name ="Avatar")]
+        public string avatar { get; set; }
+
         [Display(Name = "Full Name")]
         public string employeeFullName
         {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -60,20 +61,44 @@ namespace mis4200_Project.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "profileID,employeeFirstName,employeeLastName,email,phone,employeeSince,Department,socialMediaLinks")] Profile profile)
+        public ActionResult Create([Bind(Include = "profileID,employeeFirstName,employeeLastName,email,phone,employeeSince,Department,socialMediaLinks,avatar")] Profile profile)
         {
             if (ModelState.IsValid)
             {
-                Guid memberId;
-                Guid.TryParse(User.Identity.GetUserId(), out memberId);
-                profile.profileID = memberId;
-                //profile.profileID = Guid.NewGuid();
-                db.Profiles.Add(profile);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+             
+                HttpPostedFileBase file = Request.Files["UploadedImage"];
+                if (file != null && file.FileName != null && file.FileName != "")
+                {
+                    FileInfo fi = new FileInfo(file.FileName);
+                    if (fi.Extension != ".png" && fi.Extension != ".jpg" && fi.Extension != ".gif")
+                    {
+                        ViewBag.Errormsg = "The file, " + file.FileName + ",does not have a vaild image extension.";
+                        return View(Profile);
+                    }
+                    else
+                    {
+                        Guid memberId;
+                        Guid.TryParse(User.Identity.GetUserId(), out memberId);
+                        profile.profileID = memberId;
 
-            return View(profile);
+
+                        profile.avatar = Guid.NewGuid().ToString() + fi.Extension;
+                        file.SaveAs(Server.MapPath("~/Pictures/" + profile.avatar));
+
+                    }
+
+                    db.Profiles.Add(profile);
+                    db.SaveChanges();
+                    return RedirectToAction("Index", "Profiles");
+                }
+            }               
+            else
+            { 
+                return View(profile);
+            }
+            db.Profiles.Add(profile);
+            db.SaveChanges();
+            return RedirectToAction("Index", "Profiles");
         }
 
         // GET: Profiles/Edit/5
@@ -107,7 +132,7 @@ namespace mis4200_Project.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "profileID,employeeFirstName,employeeLastName,email,phone,employeeSince,Department,socialMediaLinks")] Profile profile)
+        public ActionResult Edit([Bind(Include = "profileID,employeeFirstName,employeeLastName,email,phone,employeeSince,Department,socialMediaLinks,avatar")] Profile profile)
         {
             if (ModelState.IsValid)
             {

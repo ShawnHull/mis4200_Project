@@ -38,39 +38,45 @@
         <th>
             @Html.DisplayNameFor(model => model.socialMediaLinks)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.avatar)
+        </th>
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.employeeFirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.employeeLastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.phone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.employeeSince)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Department)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.socialMediaLinks)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.profileID })
-                @Html.ActionLink("Details", "Details", new { id = item.profileID })
-                @Html.ActionLink("Delete", "Delete", new { id = item.profileID })
-            </td>
-        </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.employeeFirstName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.employeeLastName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.email)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.phone)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.employeeSince)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Department)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.socialMediaLinks)
+    </td>
+    <td>
+        <img src = "@Url.Content("~/uploads/")@item.avatar" height ="100" />
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.profileID })
+        @Html.ActionLink("Details", "Details", new { id = item.profileID })
+        @Html.ActionLink("Delete", "Delete", new { id = item.profileID })
+    </td>
+</tr>
     }
 
 </table>

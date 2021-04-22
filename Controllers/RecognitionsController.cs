@@ -22,7 +22,8 @@ namespace mis4200_Project.Controllers
         {
             Guid memberId;
             Guid.TryParse(User.Identity.GetUserId(), out memberId);
-            var recognition = db.recognition.Include(r => r.CoreValueType).Include(r => r.Profile);
+            var recognition = db.recognition.Where(r => r.profileID == memberId);
+            var reclist = recognition.ToList();
             var prolist = db.profile.Where(r => r.profileID == memberId);
             ViewBag.pro = prolist.ToList();
 
@@ -38,7 +39,8 @@ namespace mis4200_Project.Controllers
             ViewBag.last = last;
             var first = prolist.Select(r => r.employeeFirstName).Single();
             ViewBag.first = first;
-            return View(recognition.ToList());
+
+            return View(db.recognition.ToList());
         }
 
         // GET: Recognitions/Details/5
@@ -60,7 +62,7 @@ namespace mis4200_Project.Controllers
         [Authorize]
         public ActionResult Create()
         {
-            ViewBag.CoreValueTypeID = new SelectList(db.CoreValueType, "CoreValueTypeID", "CoreValueName");
+            ViewBag.value = new SelectList(Enum.GetValues(typeof(Recognition.CoreValue)),"CoreValue");
             ViewBag.profileID = new SelectList(db.profile, "profileID", "employeeFullName");
             return View();
         }
@@ -70,7 +72,7 @@ namespace mis4200_Project.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "RecognitionID,CoreValueTypeID,recognitionDescription,recognitionDate,profileID")] Recognition recognition)
+        public ActionResult Create([Bind(Include = "RecognitionID,value,recognitionDescription,recognitionDate,profileID")] Recognition recognition)
         {
             Guid memberId;
             Guid.TryParse(User.Identity.GetUserId(), out memberId);
@@ -90,7 +92,7 @@ namespace mis4200_Project.Controllers
 
             
 
-            ViewBag.CoreValueTypeID = new SelectList(db.CoreValueType, "CoreValueTypeID", "CoreValueName", recognition.CoreValueTypeID);
+            ViewBag.CoreValueTypeID = new SelectList(db.recognition, "Value", "CoreValue", recognition.value);
             ViewBag.profileID = new SelectList(db.profile, "profileID", "employeeFullName", recognition.profileID);
             return View(recognition);
         }
@@ -107,7 +109,7 @@ namespace mis4200_Project.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CoreValueTypeID = new SelectList(db.CoreValueType, "CoreValueTypeID", "CoreValueName", recognition.CoreValueTypeID);
+            ViewBag.CoreValueTypeID = new SelectList(db.recognition, "Value", "CoreValue", recognition.value);
             ViewBag.profileID = new SelectList(db.profile, "profileID", "employeeFullName", recognition.profileID);
             return View(recognition);
         }
@@ -117,7 +119,7 @@ namespace mis4200_Project.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "RecognitionID,CoreValueTypeID,recognitionDescription,recognitionDate,profileID")] Recognition recognition)
+        public ActionResult Edit([Bind(Include = "RecognitionID,Value,recognitionDescription,recognitionDate,profileID")] Recognition recognition)
         {
             if (ModelState.IsValid)
             {
@@ -125,7 +127,7 @@ namespace mis4200_Project.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CoreValueTypeID = new SelectList(db.CoreValueType, "CoreValueTypeID", "CoreValueName", recognition.CoreValueTypeID);
+            ViewBag.CoreValueTypeID = new SelectList(db.recognition, "Value", "CoreValue", recognition.value);
             ViewBag.profileID = new SelectList(db.profile, "profileID", "employeeFullName", recognition.profileID);
             return View(recognition);
         }

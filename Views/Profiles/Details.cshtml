@@ -65,7 +65,13 @@
         <dd>
             @Html.DisplayFor(model => model.socialMediaLinks)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.avatar)
+        </dt>
 
+        <dd>
+            <img src="@Url.Content("~/uploads/")@Model.avatar" height="100" />"
+        </dd>
     </dl>
 </div>
 <p>

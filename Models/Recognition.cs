@@ -12,8 +12,18 @@ namespace mis4200_Project.Models
 
         [Display(Name = "Core Value")]
         [Required(ErrorMessage = "Add Core Value")]
-        public int CoreValueTypeID { get; set; }
-        public virtual CoreValueType CoreValueType { get; set; }
+        public CoreValue value { get; set; }
+        public enum CoreValue 
+        {
+            Excellence = 1,
+            Openness = 2,
+            Stewardship = 3,
+            Culture = 4,
+            Passion = 5,
+            Innovate = 6,
+            Balanced = 7
+
+        }
 
         [Display(Name = "Recognition Description")]
         [Required(ErrorMessage = "Please explain why you are making this recognition")]
