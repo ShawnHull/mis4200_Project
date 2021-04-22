@@ -65,7 +65,7 @@ namespace mis4200_Project.Controllers
         {
             if (ModelState.IsValid)
             {
-             
+
                 HttpPostedFileBase file = Request.Files["UploadedImage"];
                 if (file != null && file.FileName != null && file.FileName != "")
                 {
@@ -86,19 +86,18 @@ namespace mis4200_Project.Controllers
                         file.SaveAs(Server.MapPath("~/Pictures/" + profile.avatar));
 
                     }
-
-                    db.Profiles.Add(profile);
-                    db.SaveChanges();
-                    return RedirectToAction("Index", "Profiles");
                 }
-            }               
+
+                db.Profiles.Add(profile);
+                db.SaveChanges();
+                return RedirectToAction("Index", "Profiles");
+            }
             else
-            { 
+            {
                 return View(profile);
             }
-            db.Profiles.Add(profile);
-            db.SaveChanges();
-            return RedirectToAction("Index", "Profiles");
+                          
+            
         }
 
         // GET: Profiles/Edit/5
@@ -117,6 +116,8 @@ namespace mis4200_Project.Controllers
             Guid.TryParse(User.Identity.GetUserId(), out memberId);
             if (memberId == id)
             {
+                Profile currentProfile = db.Profiles.Find(id);
+                TempData["oldPhoto"] = currentProfile.avatar;
                 return View(profile);
 
             }
@@ -136,6 +137,50 @@ namespace mis4200_Project.Controllers
         {
             if (ModelState.IsValid)
             {
+                HttpPostedFileBase file = Request.Files["UploadedImage"];
+                if (file != null && file.FileName != null && file.FileName != "")
+                {
+                    FileInfo fi = new FileInfo(file.FileName);
+                    if (fi.Extension != ".png" && fi.Extension != ".jpg" && fi.Extension != ".gif")
+                    {
+                        ViewBag.Errormsg = "The file, " + file.FileName + ",does not have a vaild image extension.";
+                        return View(Profile);
+                    }
+                    else
+                    {
+                        string path = Server.MapPath("~/Pictures" + TempData["oldPhoto"].ToString());
+                        try
+                        {
+                            if (System.IO.File.Exists(path))
+                            {
+                                System.IO.File.Delete(path);
+                            }
+                            else
+                            {
+
+                            }
+
+                        }
+                        catch (Exception EX)
+                        {
+                            ViewBag.deleteFailed = EX.Message;
+                            return View("DeleteFailed");
+
+                        }
+                        if (fi.Name != null && fi.Name != "")
+                        {
+                            profile.avatar = Guid.NewGuid().ToString() + fi.Extension;
+                            file.SaveAs(Server.MapPath("~/Pictures/" + profile.avatar));
+                        }
+
+                    }
+                }
+                else
+                {
+                    profile.avatar = TempData["oldPhoto"].ToString();
+                }
+
+                
                 db.Entry(profile).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -175,6 +220,26 @@ namespace mis4200_Project.Controllers
         public ActionResult DeleteConfirmed(Guid id)
         {
             Profile profile = db.Profiles.Find(id);
+            string imageName = profile.avatar;
+            string path = Server.MapPath("~/Pictures/" + imageName);
+            try
+            {
+                if (System.IO.File.Exists(path))
+                {
+                    System.IO.File.Delete(path);
+                }
+                else
+                {
+
+                }
+
+            }
+            catch (Exception EX)
+            {
+                ViewBag.deleteFailed = EX.Message;
+                return View("DeleteFailed");
+                
+            }
             db.Profiles.Remove(profile);
             db.SaveChanges();
             return RedirectToAction("Index");

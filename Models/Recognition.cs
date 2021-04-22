@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using Microsoft.AspNet.Identity;
 
 namespace mis4200_Project.Models
 {
@@ -13,7 +14,7 @@ namespace mis4200_Project.Models
         [Display(Name = "Core Value")]
         [Required(ErrorMessage = "Add Core Value")]
         public CoreValue value { get; set; }
-        public enum CoreValue 
+        public enum CoreValue
         {
             Excellence = 1,
             Openness = 2,
@@ -38,6 +39,12 @@ namespace mis4200_Project.Models
         [Required(ErrorMessage = "Add Employee")]
         public Guid profileID { get; set; }
         public virtual Profile Profile { get; set; }
+
+       /* [Display(Name = "Your Name")]
+        [Required(ErrorMessage = "Add your name")]
+        public Guid userID { get; set; }
+        public virtual Profile User { get; set; } */
+
 
 
     }

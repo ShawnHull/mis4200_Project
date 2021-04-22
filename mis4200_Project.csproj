@@ -262,6 +262,8 @@
     <Content Include="Views\CurrentUser\Details.cshtml" />
     <Content Include="Views\CurrentUser\Edit.cshtml" />
     <Content Include="Views\CurrentUser\Index.cshtml" />
+    <Content Include="Views\Recognitions\AddName.cshtml" />
+    <Content Include="Views\Profiles\DeleteFailed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

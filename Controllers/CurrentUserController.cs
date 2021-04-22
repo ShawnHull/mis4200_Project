@@ -62,7 +62,9 @@ namespace mis4200_Project.Controllers
             ViewBag.last = last;
             var first = prolist.Select(r => r.employeeFirstName).Single();
             ViewBag.first = first;
-            
+            var ava = prolist.Select(r => r.avatar).Single();
+            ViewBag.ava = ava;
+
 
 
 

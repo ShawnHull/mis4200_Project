@@ -75,6 +75,8 @@
     <div class="form-group">
         @Html.LabelFor(model => model.avatar, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
+            <img src="@Url.Content("~/Pictures/")@Model.avatar" height="100" />
+           
             <input id="UploadedImage" type="file" name="UploadedImage" />
             @Html.ValidationMessageFor(model => model.avatar, "", new { @class = "text-danger" })
         </div>

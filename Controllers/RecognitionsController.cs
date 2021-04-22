@@ -22,6 +22,7 @@ namespace mis4200_Project.Controllers
         {
             Guid memberId;
             Guid.TryParse(User.Identity.GetUserId(), out memberId);
+            
             var recognition = db.recognition.Where(r => r.profileID == memberId);
             var reclist = recognition.ToList();
             var prolist = db.profile.Where(r => r.profileID == memberId);
@@ -39,6 +40,9 @@ namespace mis4200_Project.Controllers
             ViewBag.last = last;
             var first = prolist.Select(r => r.employeeFirstName).Single();
             ViewBag.first = first;
+            var ava = prolist.Select(r => r.avatar).Single();
+            ViewBag.ava = ava;
+            
 
             return View(db.recognition.ToList());
         }
@@ -64,6 +68,7 @@ namespace mis4200_Project.Controllers
         {
             ViewBag.value = new SelectList(Enum.GetValues(typeof(Recognition.CoreValue)),"CoreValue");
             ViewBag.profileID = new SelectList(db.profile, "profileID", "employeeFullName");
+            ViewBag.UserID = new SelectList(db.profile, "profileID", "employeeFullName");
             return View();
         }
 
@@ -72,7 +77,7 @@ namespace mis4200_Project.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "RecognitionID,value,recognitionDescription,recognitionDate,profileID")] Recognition recognition)
+        public ActionResult Create([Bind(Include = "RecognitionID,value,recognitionDescription,recognitionDate,profileID,userID")] Recognition recognition)
         {
             Guid memberId;
             Guid.TryParse(User.Identity.GetUserId(), out memberId);
@@ -82,12 +87,17 @@ namespace mis4200_Project.Controllers
             }
             else
             {
-                if (ModelState.IsValid)
+           
+                {
+                    if (ModelState.IsValid)
                  {
                     db.recognition.Add(recognition);
                     db.SaveChanges();
                     return RedirectToAction("Index");
                  }
+
+                }    
+                
             }  
 
             
