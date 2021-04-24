@@ -148,7 +148,7 @@ namespace mis4200_Project.Controllers
                     }
                     else
                     {
-                        string path = Server.MapPath("~/Pictures" + TempData["oldPhoto"].ToString());
+                        string path = Server.MapPath("~/Pictures/" +TempData["oldPhoto"].ToString());
                         try
                         {
                             if (System.IO.File.Exists(path))
