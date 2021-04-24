@@ -20,7 +20,9 @@ namespace mis4200_Project.Models
         [Display(Name = "Phone")]
         public string phone { get; set; }
         [Display(Name = "Start Date")]
+        [DisplayFormat(DataFormatString = "{0:d}")] 
         public DateTime employeeSince { get; set; }
+
         [Display(Name = "Depaterment")]
         public string Department { get; set; }
         [Display(Name = "Social Media Links")]
