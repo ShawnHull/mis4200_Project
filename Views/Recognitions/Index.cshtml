@@ -4,6 +4,7 @@
 @{
     ViewBag.Title = "Index";
     var dep = ViewBag.dep;
+    var pos = ViewBag.pos;
     var phone = ViewBag.phone;
     var email = ViewBag.email;
     var last = ViewBag.last;
@@ -14,7 +15,10 @@
 <h2>Recognitions</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <button type="button" class="btn-success btn-sm">
+        <span class="glyphicon glyphicon-user"></span> @Html.ActionLink("Recognize a Coworker!", "Create")
+    </button>
+    
 </p>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,11 +54,13 @@
                         <img src="@Url.Content("~/Pictures/")@ava" class="img-circle" height="65" width="65" alt="Avatar">
                     </div>
                     <div class="well">
-                        <p><a>About</a></p>
+                        <p>About</p>
                         
                         <p>
                             Department: @dep 
-
+                        <p>
+                            Position: @pos
+                        
                         <p>
                             Phone: @phone
                         <p>
@@ -70,7 +76,7 @@
                 People are looking at your profile. Find out who.
             </div>
             -->
-                    <p><a href="#">About Me</a></p>
+                   
 
                 </div>
                 <div class="col-sm-7">

@@ -61,7 +61,7 @@ namespace mis4200_Project.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "profileID,employeeFirstName,employeeLastName,email,phone,employeeSince,Department,socialMediaLinks,avatar")] Profile profile)
+        public ActionResult Create([Bind(Include = "profileID,employeeFirstName,employeeLastName,email,phone,employeeSince,Department,postion,socialMediaLinks,avatar")] Profile profile)
         {
             if (ModelState.IsValid)
             {
@@ -133,7 +133,7 @@ namespace mis4200_Project.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "profileID,employeeFirstName,employeeLastName,email,phone,employeeSince,Department,socialMediaLinks,avatar")] Profile profile)
+        public ActionResult Edit([Bind(Include = "profileID,employeeFirstName,employeeLastName,email,phone,employeeSince,Department,postion,socialMediaLinks,avatar")] Profile profile)
         {
             if (ModelState.IsValid)
             {

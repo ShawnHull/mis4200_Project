@@ -36,6 +36,9 @@
             @Html.DisplayNameFor(model => model.Department)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.postion)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.socialMediaLinks)
         </th>
         <th>
@@ -66,10 +69,13 @@
         @Html.DisplayFor(modelItem => item.Department)
     </td>
     <td>
+        @Html.DisplayFor(modelItem => item.postion)
+    </td>
+    <td>
         @Html.DisplayFor(modelItem => item.socialMediaLinks)
     </td>
     <td>
-        <img src = "@Url.Content("~/Pictures/")@item.avatar" height ="100" />
+        <img src="@Url.Content("~/Pictures/")@item.avatar" height="100" />
     </td>
     <td>
         @Html.ActionLink("Edit", "Edit", new { id = item.profileID })

@@ -53,7 +53,9 @@ namespace mis4200_Project.Controllers
            
             var dep = prolist.Select(r => r.Department).Single();
             ViewBag.dep = dep;
-           
+            var pos = prolist.Select(r => r.postion).Single();
+            ViewBag.pos = pos;
+
             var phone = prolist.Select(r => r.phone).Single();
             ViewBag.phone = phone;
             var email = prolist.Select(r => r.email).Single();

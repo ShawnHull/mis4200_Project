@@ -11,6 +11,7 @@
     var recsix = ViewBag.six;
     var recseven = ViewBag.seven;
     var dep = ViewBag.dep;
+    var pos = ViewBag.pos;
     var phone = ViewBag.phone;
     var email = ViewBag.email;
     var last = ViewBag.last;
@@ -108,10 +109,14 @@
                     </p>
                     <img src="@Url.Content("~/Pictures/")@ava" class="img-circle" height="65" width="65" alt="Avatar">
                 </div>
-                <div class="well">
+                <div>
                     <p>About</p>
-                                        <p>
-                        I'm a part of the @dep team
+
+                    <p>
+                        Department: @dep
+                    <p>
+                        Position: @pos
+
                     <p>
                         Phone: @phone
                     <p>
@@ -150,9 +155,8 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="well">
-                                <p>@Html.DisplayFor(modelItem => item.value) </p>
-                                <p> @Html.DisplayFor(modelItem => item.Profile.employeeFullName)</p>
-                                <img src="@Url.Content("~/Pictures/")item.Profile.avatar" class="img-circle" height="55" width="55" alt="Avatar" />
+                                
+                                <img src="@Url.Content("~/Pictures/")@item.Profile.avatar" class="img-circle" height="55" width="55" alt="Avatar" />
                             </div>
                         </div>
 
@@ -160,11 +164,12 @@
 
                         <div class="col-sm-7">
                             <div class="well">
+                                <p> @Html.DisplayFor(modelItem => item.Profile.employeeFullName) You're being recognized for @Html.DisplayFor(modelItem => item.value) becasue:</p>
                                 <p>
                                     @Html.DisplayFor(modelItem => item.recognitionDescription)
                                 </p>
                                 <p>
-                                    @Html.DisplayFor(modelItem => item.recognitionDate)
+                                    Recognized on:@Html.DisplayFor(modelItem => item.recognitionDate)
 
                                 </p>
                             </div>
