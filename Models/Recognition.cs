@@ -57,7 +57,7 @@ namespace mis4200_Project.Models
 
         public string userName { get; set; }
 
-       // public virtual Profile User  {get; set; }
+        // public virtual Profile User  {get; set; }
 
 
 
