@@ -93,9 +93,9 @@
                         <div class="row">
                             <div class="col-sm-3">
                                 <div class="well">
-                                    <p>@Html.DisplayFor(modelItem => item.value) </p>
+                                    <img src="@Url.Content("~/Pictures/")@item.Profile.avatar" class="img-circle" height="65" width="65" alt="Avatar">
                                     <p> @Html.DisplayFor(modelItem => item.Profile.employeeFullName)</p>
-                                   
+
                                 </div>
                             </div>
 
@@ -103,7 +103,9 @@
 
                             <div class="col-sm-9">
                                 <div class="well">
+                                    <p>Is being recognized for: @Html.DisplayFor(modelItem => item.value) </p>
                                     <p>
+
                                         @Html.DisplayFor(modelItem => item.recognitionDescription)
                                     </p>
                                     <p>

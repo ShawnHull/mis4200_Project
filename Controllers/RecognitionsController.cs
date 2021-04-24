@@ -43,7 +43,7 @@ namespace mis4200_Project.Controllers
             var ava = prolist.Select(r => r.avatar).Single();
             ViewBag.ava = ava;
             
-
+            //var userlist =db.profile.Where(r => r.profileID == Recognition.)
             return View(db.recognition.ToList());
         }
 
@@ -77,7 +77,7 @@ namespace mis4200_Project.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "RecognitionID,value,recognitionDescription,recognitionDate,profileID,userID")] Recognition recognition)
+        public ActionResult Create([Bind(Include = "RecognitionID,value,recognitionDescription,recognitionDate,profileID")] Recognition recognition)
         {
             Guid memberId;
             Guid.TryParse(User.Identity.GetUserId(), out memberId);
@@ -92,6 +92,7 @@ namespace mis4200_Project.Controllers
                     if (ModelState.IsValid)
                  {
                     db.recognition.Add(recognition);
+                        recognition.userName = HttpContext.User.Identity.GetUserId();
                     db.SaveChanges();
                     return RedirectToAction("Index");
                  }

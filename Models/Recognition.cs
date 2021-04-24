@@ -55,12 +55,9 @@ namespace mis4200_Project.Models
         public Guid profileID { get; set; }
         public virtual Profile Profile { get; set; }
 
-       /* [Display(Name = "Your Name")]
-        [Required(ErrorMessage = "Add your name")]
-        public Guid userID { get; set; }
-        public virtual Profile User { get; set; } */
+        public string userName { get; set; }
 
 
 
-    }
-    }
+    }    
+}
