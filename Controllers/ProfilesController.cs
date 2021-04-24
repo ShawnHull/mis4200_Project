@@ -77,9 +77,7 @@ namespace mis4200_Project.Controllers
                     }
                     else
                     {
-                        Guid memberId;
-                        Guid.TryParse(User.Identity.GetUserId(), out memberId);
-                        profile.profileID = memberId;
+                        
 
 
                         profile.avatar = Guid.NewGuid().ToString() + fi.Extension;
@@ -87,7 +85,9 @@ namespace mis4200_Project.Controllers
 
                     }
                 }
-
+                Guid memberId;
+                Guid.TryParse(User.Identity.GetUserId(), out memberId);
+                profile.profileID = memberId;
                 db.Profiles.Add(profile);
                 db.SaveChanges();
                 return RedirectToAction("Index", "Profiles");
